@@ -18,6 +18,8 @@ class CreateDiariesTable extends Migration
             $table->unsignedBigInteger('user_id'); //unsignedBiginteger マイナスにならない整数型
             $table->string('title');
             $table->text('content');
+            $table->string('date');
+            $table->string('author');
             $table->timestamps();
             
             $table->foreign('user_id')->references('id')->on('users');

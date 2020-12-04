@@ -1,0 +1,46 @@
+table {
+    width: 100%;
+}
+table th {
+    background: #EEEEEE;
+}
+table th,
+table td {
+    border: 1px solid #CCCCCC;
+    text-align: center;
+    padding: 5px;
+}
+
+.calendar-title{
+    color:#545463;
+    margin-top:10px;
+    text-align: center;
+    font-size: 22px;
+}
+
+.sunday{
+    color:#FF2943;
+}
+
+.saturday{
+    color:#2B31D6;
+}
+
+.calendar{
+    margin:0 auto;
+}
+
+.nottoday{
+    color:#707070;
+}
+
+.today{
+    font-weight: bold;
+    color:#E26D6D;
+}
+
+td ul{
+    list-style-type: none;
+    margin:0 auto;
+    padding:0;
+}

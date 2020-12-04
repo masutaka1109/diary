@@ -1,0 +1,16 @@
+.icon{
+    border-radius:1000px;
+}
+
+.intro-wrapper{
+    display:flex;
+    padding:20px;
+}
+
+.user_name{
+    font-size:22px;
+}
+
+.button-area{
+    text-align:center;
+}
