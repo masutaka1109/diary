@@ -18,17 +18,30 @@ Route::get('/', function () {
 
 Route::get('calendar',function(){
     return view('calendar');
-});
+})->name('calendar');
 
 Route::get('write/{date}','DiariesController@showwrite')->name('write.get');
-Route::post('write','DiariesController@store')->name('write.store'); //その日の日記を投稿するためのページ
 
+Route::post('write','DiariesController@store')->name('diary.store'); //その日の日記を投稿するためのページ
 Route::get('diary/{id}','DiariesController@show')->name('diary.show'); //日記の詳細ページ
+Route::get('diary/{id}/edit','DiariesController@edit')->name('diary.edit'); //日記の編集ページ
+Route::put('diary/{id}','DiariesController@update')->name('diary.update'); //日記を編集するアクション
 
 Route::get('read/{date}','DiariesController@index')->name('read.get'); //その日に投稿された日記を読むページ
 
 Route::group(['middleware' => ['auth']],function () {
-   Route::resource('users', 'UsersController', ['only' => ['index', 'show']]);
+   Route::group(['prefix' => 'users/{user}'],function(){
+       Route::get('diaries','DiariesController@users_diaries')->name('users.diaries');
+       Route::get('favorites','UsersController@favorites')->name('users.favorites');
+       Route::get('edit','UsersController@edit')->name('users.edit');
+   });
+   
+   Route::group(['prefix' => 'diaries/{id}'], function () {
+        Route::post('favorite', 'FavoritesController@store')->name('favorites.favorite');
+        Route::delete('unfavorite', 'FavoritesController@destroy')->name('favorites.unfavorite');
+    });
+   
+   Route::resource('users', 'UsersController', ['only' => ['index', 'show','update']]);
 });
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');

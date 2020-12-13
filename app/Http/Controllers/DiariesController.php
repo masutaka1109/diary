@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
 use App\Diary;
 
 class DiariesController extends Controller
@@ -15,7 +16,7 @@ class DiariesController extends Controller
     }
     
     public function index($date){
-        $diaries = Diary::where('date',$date)->get();
+        $diaries = Diary::where('date',$date)->paginate(10);
         
         return view('diary.index',[
                 'date' => $date,
@@ -46,6 +47,37 @@ class DiariesController extends Controller
         
         return view('diary.show',[
                 'diary' => $diary,
+            ]);
+    }
+    
+    public function edit($id){
+        $diary = Diary::findOrFail($id);
+        
+        return view('diary.edit',[
+                'diary' => $diary,
+            ]);
+    }
+    
+    public function update(Request $request,$id){
+        $diary = Diary::findOrFail($id);
+        
+        $diary->title = $request->title;
+        $diary->content = $request->content;
+        $diary->save();
+        
+        return redirect(route('diary.show', [
+            'id' => $id,
+        ]));
+    }
+    
+    public function users_diaries($id)
+    {
+        $user = User::findOrFail($id);
+        $diaries = Diary::where('user_id',$id)->paginate(10);
+        
+        return view('users.diaries',[
+                'user' => $user,
+                'diaries' => $diaries,
             ]);
     }
 }

@@ -11,7 +11,7 @@
 <body>
     @include('commons.navbar')
     @include('users.navtabs')
-    <h3 class-"title">{{$user->name}}さんが書いた日記一覧</h3>
+    <h3>{{$user->name}}さんがお気に入りした日記一覧</h3>
     <div class="diary-area">
         @if(count($diaries) > 0)
             @foreach($diaries as $diary)

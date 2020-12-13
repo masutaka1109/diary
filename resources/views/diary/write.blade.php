@@ -11,7 +11,7 @@
     @include('commons.navbar')
     <div class="title">{{$date}}の日記</div>
     <div class="form-area">
-        {!! Form::model($diary,['route' => 'write.store']) !!} 
+        {!! Form::model($diary,['route' => 'diary.store']) !!} 
         {{ Form::hidden('date',$date) }} 
         <?php $name = Auth::user()->name;?>
         {{ Form::hidden('name',$name) }} 

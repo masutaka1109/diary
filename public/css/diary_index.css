@@ -1,0 +1,27 @@
+.title{
+    font-size:25px;
+    color:#545463;
+    margin-top:10px;
+}
+.diary-info:nth-of-type(odd){
+            background-color:#f5f5f5;
+}
+.diary-info{
+    margin-right:20px;
+    padding:12px 0 10px 15px;
+}
+.diary-title-area{
+    font-size:20px;
+    font-weight:bold;
+}
+.diary-content-area{
+    padding:3px 0  3px 10px;
+}
+.diary-link{
+    text-align: right;
+}
+.author{
+    color:#545051;
+    font-size:12px;
+    opacity: 70%;
+}

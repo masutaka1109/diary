@@ -14,4 +14,9 @@ class Diary extends Model
     {
         return $this->belongsTo(User::class);
     }
+    
+    public function favorite_users()
+    {
+        return $this->belongsToMany(User::class,'favorites','diary_id','user_id');
+    }
 }
