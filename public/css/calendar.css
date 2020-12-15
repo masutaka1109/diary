@@ -16,13 +16,37 @@ table td {
     margin-top:10px;
     text-align: center;
     font-size: 22px;
+    display:inline-block;
 }
 
-.sunday{
+.title-area{
+    position:relative;
+    text-align: center;
+}
+
+.next-btn{
+    position:absolute;
+    right:0;
+    top:5px;
+}
+
+.prev-btn{
+    position:absolute;
+    left:0;
+    top:5px;
+}
+
+.day-blank{
+    background-color:#efefef;    
+}
+
+.sunday,
+.day-sun .day{
     color:#FF2943;
 }
 
-.saturday{
+.saturday,
+.day-sat .day{
     color:#2B31D6;
 }
 
@@ -35,8 +59,7 @@ table td {
 }
 
 .today{
-    font-weight: bold;
-    color:#E26D6D;
+    background-color:#faf0e6;
 }
 
 td ul{

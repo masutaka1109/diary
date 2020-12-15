@@ -16,9 +16,7 @@ Route::get('/', function () {
     Route::resource('diaries', 'DiariesController', ['only' => ['store', 'destroy']]);
 });
 
-Route::get('calendar',function(){
-    return view('calendar');
-})->name('calendar');
+Route::get('calendar','CalendarController@show')->name('calendar');
 
 Route::get('write/{date}','DiariesController@showwrite')->name('write.get');
 

@@ -11,78 +11,23 @@
     <!-- ナビバー -->
     @include('commons.navbar')
     <!-- カレンダー -->
-    <?php
-        $year = date('Y');
-        $month = date('n');
-        $today = date('Y-m-d');
-        
-        $last_day = date('j',mktime(0,0,0,$month+1,0,$year));
-        $calndar = array();
-        $j = 0;
-        
-        for($i = 1;$i < $last_day+1;$i++){
-            $week = date('w',mktime(0,0,0,$month,$i,$year)); //0~6の曜日に対応する数字を返す
-            if($i == 1){
-                for($s = 1;$s <= $week;$s++){
-                    //1日目の曜日まで空文字を入れる
-                    $calendar[$j]['day'] = '';
-                    $j++;
-                }
-            }
-            
-            $calendar[$j]['day'] = $i;
-            $j++;
-            
-            if($i == $last_day){
-                for($e = 1;$e <= 6 - $week;$e++){
-                    $calendar[$j]['day'] = '';
-                    $j++;
-                }
-            }
-        }
-    ?>
-    <div class="calendar-title">
-      <?php echo $year; ?>年<?php echo $month; ?>月のカレンダー
+    <div class="container">
+       <div class="row justify-content-center">
+           <div class="col-md-12">
+               <div class="title-area">
+                   <a class="btn btn-outline-secondary prev-btn" href="{{ url('calendar?date=' . $calendar->getPreviousMonth()) }}">前の月</a>
+                   <div class="calendar-title">{{ $calendar->getTitle() }}</div>
+                   <a class="btn btn-outline-secondary next-btn" href="{{ url('calendar?date=' . $calendar->getNextMonth()) }}">次の月</a>
+               </div>
+               <div class="">
+  				        {!! $calendar->render() !!}
+               </div>
+           </div>
+       </div>
     </div>
-  <br>
-  <table class="calendar col-md-11">
-      <tr>
-          <th class="sunday">日</th>
-          <th>月</th>
-          <th>火</th>
-          <th>水</th>
-          <th>木</th>
-          <th>金</th>
-          <th class="saturday">土</th>
-      </tr>
-   
-      <tr>
-      <?php $cnt = 0; ?>
-      <?php foreach ($calendar as $key => $value): ?>
-          <td class="day <?php if($value['day'] == date('d')){echo "today";}else{echo "nottoday";}?>">
-          
-          <?php $cnt++; ?>
-          <?php echo $value['day']; ?>
-          <?php if($value['day']): ?>
-            
-            <ul class="dropdwn_menu">
-              <?php $wday = date('Y-m') . '-' . $value['day'];?>
-              <li>{!! link_to_route('write.get','日記を書く',['date' => $wday],[]); !!}</li>
-              <li>{!! link_to_route('read.get','日記を読む',['date' => $wday],[]); !!}</li>
-            </ul>
-          <?php endif; ?>
-          </td>
-   
-      <!-- cntが７になるたび改行 -->
-      <?php if ($cnt == 7): ?>
-      </tr>
-      <tr>
-      <?php $cnt = 0; ?>
-      <?php endif; ?>
-   
-      <?php endforeach; ?>
-      </tr>
-  </table>
+    <div class="new-diaries">
+      
+    </div>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="js/calendar.js"></script>
 </body>
