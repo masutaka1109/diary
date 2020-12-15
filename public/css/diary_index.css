@@ -1,8 +1,21 @@
+h3{
+    font-size:25px;
+    color:#545463;
+    margin-left: 10px;
+    padding-left:10px;
+    border-left:solid 10px lightgray;
+}
+
 .title{
     font-size:25px;
     color:#545463;
     margin-top:10px;
+    margin-left: 10px;
+    padding-left:10px;
+    margin-bottom:5px;
+    border-left:solid 10px lightgray;
 }
+
 .diary-info:nth-of-type(odd){
             background-color:#f5f5f5;
 }
@@ -24,4 +37,5 @@
     color:#545051;
     font-size:12px;
     opacity: 70%;
+    vertical-align: middle;
 }

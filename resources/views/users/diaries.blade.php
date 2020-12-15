@@ -11,13 +11,13 @@
 <body>
     @include('commons.navbar')
     @include('users.navtabs')
-    <h3 class-"title">{{$user->name}}さんが書いた日記一覧</h3>
+    <h3 class-"title" style="margin-top:10px;">{{$user->name}}さんが書いた日記一覧</h3>
     <div class="diary-area">
         @if(count($diaries) > 0)
             @foreach($diaries as $diary)
             <div class="diary-info">
                 <div class="diary-title-area">
-                    {{ $diary -> title }}
+                    {{ $diary -> title }} {!! link_to_route('users.show',$diary->author . "さんが書いた日記",['user'=>$diary->user_id],['class' => 'author']) !!}
                 </div>
                 <div class="diary-content-area">
                     <?php
